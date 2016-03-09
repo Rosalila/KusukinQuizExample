@@ -106,7 +106,7 @@ window.onload = function() {
 
     game.current_question=0;
     //API call: retreive the progress by reading current_question value
-    $.get("/javascript_api/get_progress",{"user_id":2,"course_id":6},
+    $.get("/javascript_api/get_progress",
             function(data)
             {
               //console.log(data);
@@ -177,6 +177,11 @@ window.onload = function() {
     response_text.text="You finished the quiz!";
     game.current_question=0;
     updateText();
+    $.post("/javascript_api/unlock_achievement",{achievement_id: 1},
+            function(data)
+            {
+              //console.log(data)
+            })
   }
 
   function correctAnswer()
@@ -185,7 +190,6 @@ window.onload = function() {
     game.current_question+=1;
     //API call: update progress by storing current_question
     $.post("/javascript_api/save_progress",{progress:{"current_question":game.current_question},
-                                                      "user_id":2,"course_id":6},
             function(data)
             {
               //console.log(data)
