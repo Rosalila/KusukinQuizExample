@@ -189,7 +189,7 @@ window.onload = function() {
     response_text.text="Correct!";
     game.current_question+=1;
     //API call: update progress by storing current_question
-    $.post("/javascript_api/save_progress",{progress:{"current_question":game.current_question},
+    $.post("/javascript_api/save_progress",{progress:{"current_question":game.current_question}},
             function(data)
             {
               //console.log(data)
